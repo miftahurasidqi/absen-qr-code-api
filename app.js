@@ -28,7 +28,7 @@ app.use("/api/kehadiran", ruteKehadiran_1.default);
 (0, ruteWs_1.default)(app);
 const PORT = process.env.PORT || 3300;
 mongoose_1.default
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI || "mongodb+srv://miftahurasidqi:Cedm4Ip6XI4f5kSy@cluster0.d3dl5wx.mongodb.net/presensi_QR")
   .then(() => {
     console.log("Terhubung dengan MongoDB");
     app.listen(PORT, () => {
