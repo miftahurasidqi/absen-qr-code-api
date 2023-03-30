@@ -20,5 +20,4 @@ const skemaPegawai = new mongoose.Schema({
     default: "pegawai",
   },
 });
-exports.default = mongoose_1.default.model("Pegawai", skemaPegawai, "pegawai");
-//# sourceMappingURL=pegawai.js.map
+module.exports = mongoose.default.model("Pegawai", skemaPegawai);
