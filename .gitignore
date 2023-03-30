@@ -6,7 +6,9 @@
 .pnp.js
 
 # production
-
+/controllers
+/middlewares
+/routes
 
 # misc
 .DS_Store

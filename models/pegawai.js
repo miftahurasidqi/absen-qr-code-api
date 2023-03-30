@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const skemaPegawai = new mongoose.Schema({
+const sekema = mongoose.Schema;
+const skemaPegawai = new sekema({
   nama: {
     type: String,
     required: true,
@@ -20,4 +21,4 @@ const skemaPegawai = new mongoose.Schema({
     default: "pegawai",
   },
 });
-module.exports = mongoose.default.model("Pegawai", skemaPegawai);
+module.exports = mongoose.model("Pegawai", skemaPegawai);

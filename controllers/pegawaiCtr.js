@@ -1,9 +1,7 @@
 // exports.profil = exports.login = exports.semuaPegawai = exports.tambahPegawai = void 0;
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
-const pegawai = require("../models/pegawai");
-const ruteWs = require("../routes/ruteWs");
-const pegawai = require("../models/pegawai");
+const Pegawai = require("../models/pegawai");
 
 const tambahData = async (nama, email, password, peran) => {
   const salt = await bcrypt.genSalt(10);
