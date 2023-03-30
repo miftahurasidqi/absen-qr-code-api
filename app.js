@@ -1,34 +1,35 @@
-"use strict";
-var __importDefault =
-  (this && this.__importDefault) ||
-  function (mod) {
-    return mod && mod.__esModule ? mod : { default: mod };
-  };
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const mongoose_1 = __importDefault(require("mongoose"));
-const express_ws_1 = __importDefault(require("express-ws"));
-const cors_1 = __importDefault(require("cors"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const morgan_1 = __importDefault(require("morgan"));
-const rutePegawai_1 = __importDefault(require("./routes/rutePegawai"));
-const ruteKehadiran_1 = __importDefault(require("./routes/ruteKehadiran"));
-const ruteWs_1 = __importDefault(require("./routes/ruteWs"));
-// absen_QR
-// mongodb+srv://miftahurasidqi:Cedm4Ip6XI4f5kSy@cluster0.d3dl5wx.mongodb.net/presensi_QR
-// mongodb://127.0.0.1:27017/presensi
-dotenv_1.default.config();
-const app = (0, express_1.default)();
-(0, express_ws_1.default)(app);
-app.use((0, cors_1.default)());
-app.use((0, morgan_1.default)("combined"));
-app.use(express_1.default.json());
-app.use("/api/pegawai", rutePegawai_1.default);
-app.use("/api/kehadiran", ruteKehadiran_1.default);
-(0, ruteWs_1.default)(app);
+const express = require("express");
+const mongoose = require("mongoose");
+const express_ws = require("express-ws");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const morgan = require("morgan");
+// const rutePegawai = require("./routes/rutePegawai");
+// const ruteKehadiran = require("./routes/ruteKehadiran");
+
+const mongodb_URI = "mongodb+srv://miftahurasidqi:Cedm4Ip6XI4f5kSy@cluster0.d3dl5wx.mongodb.net/presensi_QR";
+// const mongodb_URI = "mongodb://127.0.0.1:27017/presensi";
+const router = express.Router();
+const app = express();
+dotenv.config();
+express_ws(app);
+app.use(cors());
+app.use(morgan("combined"));
+app.use(express.json());
+
+// app.use("/pegawai", rutePegawai);
+// app.use("/kehadiran", ruteKehadiran);
+
+app.use(
+  "/tes",
+  router.get("/", async (req, res) => {
+    res.json({ msg: "sucses" });
+  })
+);
+
 const PORT = process.env.PORT || 3300;
-mongoose_1.default
-  .connect(process.env.MONGO_URI || "mongodb+srv://miftahurasidqi:Cedm4Ip6XI4f5kSy@cluster0.d3dl5wx.mongodb.net/presensi_QR")
+mongoose
+  .connect(mongodb_URI)
   .then(() => {
     console.log("Terhubung dengan MongoDB");
     app.listen(PORT, () => {
